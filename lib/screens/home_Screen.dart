@@ -62,37 +62,38 @@ class HomeScreen extends StatelessWidget {
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(3,-0.3),
+                alignment: AlignmentDirectional(1.5, -0.3),
                 child: Container(
-                  height: 300,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.deepPurple
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.deepPurple,
                   ),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-3,-0.3),
+                alignment: AlignmentDirectional(-1.5, -0.3),
                 child: Container(
-                  height: 300,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xff673AB7)
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xff673AB7),
                   ),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0,-1.2),
+                alignment: AlignmentDirectional(0, -1.0),
                 child: Container(
-                  height: 300,
-                  width: 600,
-                  decoration: BoxDecoration(
-                      color: Color(0xffffab40)
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                    color: Color(0xffffab40),
                   ),
                 ),
               ),
+
               BackdropFilter(filter: ImageFilter.blur
                 (sigmaX: 100.0,sigmaY: 100.0),
                 child: Container(decoration: BoxDecoration(
@@ -106,15 +107,14 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('📍${state.weather.areaName}',style: TextStyle(fontSize: 18,color: Colors.white,fontWeight: FontWeight.w400),),
-                    SizedBox(height: 8,),
-                    Text(getGreeting(state.weather.date!),style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+                    Text('📍${state.weather.areaName}',style: TextStyle(fontSize: 18,color: Colors.white,fontWeight: FontWeight.bold),),
+                    Text(getGreeting(state.weather.date!),style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold),),
                     getWeatherIcon(state.weather.weatherConditionCode!),
                     Center(child: Text('${state.weather.temperature!.celsius!.round()}°C',style: TextStyle(color: Colors.white,fontSize: 55,fontWeight: FontWeight.bold),),),
                     Center(child: Text(state.weather.weatherMain!.toUpperCase(),style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.w500),),),
                     SizedBox(height: 5,),
                     Center(child: Text(DateFormat('EEEE dd MMM *').add_jm().format(state.weather.date!),style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w300),),),
-                    SizedBox(height: 30,),
+                    SizedBox(height: MediaQuery.of(context).size.height*.05,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
