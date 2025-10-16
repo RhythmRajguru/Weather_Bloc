@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:weather_bloc/bloc/weather_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
-  Widget getWeatherICon(int code){
+  Widget getWeatherIcon(int code){
     switch(code){
       case >=200 && <300:
         return Image.asset('assets/1.png');
@@ -27,6 +27,21 @@ class HomeScreen extends StatelessWidget {
         return Image.asset('assets/7.png');
     }
   }
+  String getGreeting(DateTime dateTime) {
+    int hour = dateTime.hour;
+
+    if (hour >= 5 && hour < 12) {
+      return 'Good Morning';
+    } else if (hour >= 12 && hour < 16) {
+      return 'Good Afternoon';
+    } else if (hour >= 16 && hour < 20) {
+      return 'Good Evening';
+    } else {
+      return 'Good Night';
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +106,10 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('📍${state.weather.areaName}',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),),
+                    Text('📍${state.weather.areaName}',style: TextStyle(fontSize: 18,color: Colors.white,fontWeight: FontWeight.w400),),
                     SizedBox(height: 8,),
-                    Text('Good Morning',style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
-                    getWeatherICon(state.weather.weatherConditionCode!),
+                    Text(getGreeting(state.weather.date!),style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+                    getWeatherIcon(state.weather.weatherConditionCode!),
                     Center(child: Text('${state.weather.temperature!.celsius!.round()}°C',style: TextStyle(color: Colors.white,fontSize: 55,fontWeight: FontWeight.bold),),),
                     Center(child: Text(state.weather.weatherMain!.toUpperCase(),style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.w500),),),
                     SizedBox(height: 5,),
